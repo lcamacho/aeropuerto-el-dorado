@@ -1,0 +1,21 @@
+{
+  "name": "Aeropuerto El Dorado (no oficial)",
+  "description": "Esta aplicación muestra el cronograma de vuelos nacionales e internacionales del Aeropuerto El Dorado (BOG) de Colombia, asi como la información relacionada a cada vuelo.",
+  "launch_path": "/index.html",
+  "icons": {
+    "60": "/images/icon-60.png",
+    "128": "/images/icon-128.png"
+  },
+  "developer": {
+    "name": "Leonard Camacho",
+    "url": "https://leonardcamacho.me"
+  },
+  "version": "1.0",
+  "default_locale": "es",
+  "type": "privileged",
+  "permissions": {
+    "systemXHR": {
+      "description": "Es necesario para obtener la información de los vuelos desde la página del Aeropuerto El Dorado."
+    }
+  }
+}

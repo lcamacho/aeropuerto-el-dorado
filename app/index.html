@@ -1,0 +1,121 @@
+<!doctype html>
+<html class="no-js" ng-app="aeropuertoElDoradoApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/headers.css">
+    <link rel="stylesheet" href="styles/drawer.css">
+    <link rel="stylesheet" href="styles/action_icons.css">
+    <link rel="stylesheet" href="styles/transitions.css">
+    <link rel="stylesheet" href="styles/fontello.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body data-ng-controller="Controller" role="application">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <section id="index" class="current" data-position="current">
+      <section data-type="sidebar" data-position="left">
+        <header>
+          <h1><i class="icon-calendar-empty"></i>  Cronograma</h1>
+        </header>
+        <nav>
+          <h2>Internacionales</h2>
+          <ul>
+            <li><a href="#content" data-ng-click="change('LI')"><i class="icon-flight fa-rotate-180"></i>  Llegadas</a></li>
+            <li><a href="#content" data-ng-click="change('SI')"><i class="icon-flight"></i>  Salidas</a></li>
+          </ul>
+          <h2>Nacionales</h2>
+          <ul>
+            <li><a href="#content" data-ng-click="change('LN')"><i class="icon-flight fa-rotate-180"></i>  Llegadas</a></li>
+            <li><a href="#content" data-ng-click="change('SN')"><i class="icon-flight"></i>  Salidas</a></li>
+          </ul>
+        </nav>
+      </section>
+      <section id="drawer" role="region" >
+          <header id="normal">
+            <a href="#content"><span class="icon icon-menu"></span></a>
+            <a href="#drawer"><span class="icon icon-menu"></span></a>
+            <menu type="toolbar">
+              <a href="#content" ng-click="search()"><span class="icon action-icon search"></span></a>
+              <a href="#content" ng-click="change(type)"><span class="icon action-icon email-sync"></span></a>
+            </menu>
+            <h1 id="title">{{area}}</h1>
+          </header>
+          <header id="search" class="hidden">
+            <button ng-click="backSearch()"><span class="icon icon-back">back</span></button>
+            <menu type="toolbar">
+            </menu>
+            <form action="#">
+              <input ng-model="query.Vuelo" placeholder="Nro. de vuelo" required="required" type="text" id="query">
+            </form>
+          </header>
+        <div role="main">
+          <div class="table-responsive">
+            <table class="table">
+              <tr data-ng-repeat="flight in flights | filter:query.Vuelo" data-ng-class="getClass(flight)" data-ng-click="showInfo(flight)">
+                <td>{{flight.schedule_time}}</td>
+                <td>{{flight.airline_code}} {{flight.flight_number}}</td>
+                <td><img class="img-responsive center-block" data-ng-src="http://eldorado.aero/wp-content/uploads/airlines/{{flight.airline_logo}}" alt="{{flight.airline}}"></td>
+                <td class="visible-sm visible-md visible-lg">{{flight.location}}</td>
+                <td class="visible-sm visible-md visible-lg">{{flight.gate}}</td>
+                <td class="visible-sm visible-md visible-lg">{{flight.status-es}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="ads">
+          <iframe src="https://leonardcamacho.me/ads/index.html"></iframe>
+        </div>
+      </section>
+    </section>
+    <section id="info" role="region" data-position="right">
+      <header>
+        <a href="#" data-ng-click="backInfo()"><span class="icon icon-back"></span></a>
+        <h1>Información</h1>
+      </header>
+      <div role="main">
+        <dl class="text-center">
+          <dt>Hora:</dt>
+          <dd>{{flightInfo.schedule_time}}</dd>
+          <dt>Nro de vuelo:</dt>
+          <dd>{{flightInfo.airline_code}} {{flightInfo.flight_number}}</dd>
+          <dt>Aerolínea:</dt>
+          <dd><img class="img-responsive center-block" data-ng-src="http://eldorado.aero/wp-content/uploads/airlines/{{flightInfo.airline_logo}}" alt="{{flightInfo.airline}}"></dd>
+          <dt>{{flightInfoString}}:</dt>
+          <dd>{{flightInfo.location}}</dd>
+          <dt>Puerta:</dt>
+          <dd>{{flightInfo.gate}}</dd>
+          <dt>Estado:</dt>
+          <dd>{{getStatus(flightInfo)}}</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

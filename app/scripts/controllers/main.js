@@ -95,6 +95,14 @@ angular.module('aeropuertoElDoradoApp')
       document.querySelector('#normal').classList.remove('hidden');
     };
 
+    $scope.getAltImage = function(string) {
+      var alt = string;
+      if (string.length > 15) {
+        alt = string.substring(0, 14);
+      }
+      return alt;
+    };
+
     body.addEventListener('transitionend', function() {
       if (body.clientHeight <= 230) {
         ads.hidden = true;

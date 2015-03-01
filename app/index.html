@@ -67,7 +67,7 @@
               <tr data-ng-repeat="flight in flights | filter:query.Vuelo" data-ng-class="getClass(flight)" data-ng-click="showInfo(flight)">
                 <td>{{flight.schedule_time}}</td>
                 <td>{{flight.airline_code}} {{flight.flight_number}}</td>
-                <td><img class="img-responsive center-block" data-ng-src="http://eldorado.aero/wp-content/uploads/airlines/{{flight.airline_logo}}" alt="{{flight.airline}}"></td>
+                <td><img class="img-responsive center-block" data-ng-src="http://eldorado.aero/wp-content/uploads/airlines/{{flight.airline_logo}}" alt="{{getAltImage(flight.airline)}}"></td>
                 <td class="visible-sm visible-md visible-lg">{{flight.location}}</td>
                 <td class="visible-sm visible-md visible-lg">{{flight.gate}}</td>
                 <td class="visible-sm visible-md visible-lg">{{flight.status-es}}</td>
